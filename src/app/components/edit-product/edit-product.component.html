@@ -1,0 +1,122 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">Edit Product</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Product form -->
+<div class="inner-wrapper">
+  <form [formGroup]="editProductForm" (ngSubmit)="updateProduct()" novalidate>
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Product description -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Product description" formControlName="product_description">
+          <mat-error *ngIf="handleError('product_description', 'required')">
+            You must provide a <strong>product description</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Quantity -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Stock Quantity" formControlName="stock_quantity" pattern="[0-9]*" minlength="1"
+            maxlength="10">
+          <mat-error *ngIf="handleError('stock_quantity', 'required')">
+            You must provide a <strong>stock quantity</strong>
+          </mat-error>
+          <mat-error *ngIf="handleError('stock_quantity', 'pattern')">
+            Only numbers are allowed
+          </mat-error>
+          <mat-error *ngIf="handleError('stock_quantity', 'minlength')">
+            The <strong>stock quantity</strong> must be atleast 1 digit
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Product code -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Product code" formControlName="product_code">
+          <mat-error *ngIf="handleError('product_code', 'required')">
+            You must provide a <strong>product code</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Last updated -->
+        <mat-form-field>
+          <input matInput readonly [matDatepicker]="picker" placeholder="Last updated" formControlName="last_updated"
+            (dateChange)="formatDate($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="handleError('last_updated', 'required')">
+            Last updated is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Product category -->
+        <mat-form-field>
+          <mat-label>Product category</mat-label>
+          <mat-select [(value)]="selectedProductCategory" formControlName="product_category">
+            <mat-option [value]="productCategory" *ngFor="let productCategory of ProductCategory">{{productCategory}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="handleError('product_category', 'required')">
+            Product category is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Price -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Price" formControlName="price" pattern="[0-9]*" minlength="1" maxlength="10">
+          <mat-error *ngIf="handleError('price', 'required')">
+            You must provide a <strong>price</strong>
+          </mat-error>
+          <mat-error *ngIf="handleError('price', 'pattern')">
+            Only numbers are allowed
+          </mat-error>
+          <mat-error *ngIf="handleError('price', 'minlength')">
+            The <strong>price</strong> must be atleast 1 digit
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Product stock -->
+        <div class="misc-bottom-padding">
+          <mat-label>Available in stock: </mat-label>
+          <mat-radio-group aria-label="Select an option" formControlName="in_stock">
+            <mat-radio-button value="Yes">Yes</mat-radio-button>
+            <mat-radio-button value="No">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <!-- Add tags -->
+        <mat-form-field class="multiple-items">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let tag of tagArray" [selectable]="selectable" [removable]="removable"
+              (removed)="remove(tag)">
+              {{tag.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Add tags" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <i class="material-icons tooltip-info" matTooltip="Enter item name and press enter to add multiple items">
+            info
+          </i>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <!-- Submit & Reset -->
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-flat-button color="warn">Update</button>
+          <button mat-flat-button color="war" type="button" (click)="goBack()">Go Back</button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>

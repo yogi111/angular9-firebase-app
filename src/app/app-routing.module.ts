@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AddBookComponent } from './components/add-book/add-book.component';
-import { BookListComponent } from './components/book-list/book-list.component';
-import { EditBookComponent } from './components/edit-book/edit-book.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'add-book' },
-  { path: 'add-book', component: AddBookComponent },
-  { path: 'edit-book/:id', component: EditBookComponent },
-  { path: 'books-list', component: BookListComponent }
+  { path: '', pathMatch: 'full', redirectTo: 'add-product' },
+  { path: 'add-product', component: AddProductComponent },
+  { path: 'edit-product/:id', component: EditProductComponent },
+  { path: 'products-list', component: ProductListComponent }
 ];
 
 @NgModule({

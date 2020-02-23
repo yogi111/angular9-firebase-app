@@ -1,6 +1,6 @@
 <!-- Toolbar -->
 <mat-toolbar color="primary" class="header">
-  <div>Book Store</div>
+  <div>Product Store</div>
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
@@ -8,14 +8,19 @@
 
 <mat-sidenav-container>
   <!-- Sidenav -->
-  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
-    [fixedTopGap]>
+  <mat-sidenav #sidenav [mode]="'side'" [(opened)]="opened" [fixedInViewport]="true" [fixedTopGap]>
     <mat-nav-list>
-      <a mat-list-item routerLinkActive="active" routerLink="/add-book">
-        <mat-icon>add</mat-icon> Add Book
+      <a mat-list-item routerLinkActive="active" routerLink="/">
+        <mat-icon>more_horiz</mat-icon>
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="/books-list">
-        <mat-icon>format_list_bulleted</mat-icon> View Books
+      <a mat-list-item routerLinkActive="active" routerLink="/">
+        <mat-icon>more_horiz</mat-icon>
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/add-product">
+        <mat-icon>add</mat-icon> Add Product
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/products-list">
+        <mat-icon>format_list_bulleted</mat-icon> View Products
       </a>
     </mat-nav-list>
   </mat-sidenav>

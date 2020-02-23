@@ -27,7 +27,7 @@ export class AppComponent {
       this.sidenav.fixedTopGap = 55;
       this.opened = false;
     } else {
-      this.sidenav.fixedTopGap = 55
+      this.sidenav.fixedTopGap = 55;
       this.opened = true;
     }
   }
